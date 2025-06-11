@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIK STORE 💳 - Payment Gateway</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #000;
+            padding: 20px 0;
+            border-bottom: 3px solid #00ff88;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #00ff88;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            color: #aaa;
+            font-size: 1rem;
+        }
+        
+        /* Payment Methods Section */
+        .payment-section {
+            margin: 30px 0;
+        }
+        
+        .section-title {
+            color: #00ff88;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: #00ff88;
+            margin: 10px auto;
+        }
+        
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .payment-card {
+            background: #1e1e1e;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #00ff88;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .payment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 255, 136, 0.2);
+        }
+        
+        .payment-title {
+            color: #00ff88;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .payment-title i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .payment-detail {
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        
+        .payment-detail strong {
+            color: #00ff88;
+        }
+        
+        .copy-btn {
+            background: #00aa55;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+        
+        .copy-btn:hover {
+            background: #00ff88;
+        }
+        
+        /* QRIS Section */
+        .qris-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .qris-image {
+            max-width: 300px;
+            border: 3px solid #00ff88;
+            border-radius: 10px;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        .qris-desc {
+            margin-top: 15px;
+            color: #aaa;
+        }
+        
+        /* Social Links */
+        .social-section {
+            margin: 40px 0;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            background: #1e1e1e;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid #00ff88;
+        }
+        
+        .social-btn:hover {
+            background: #00ff88;
+            color: #000;
+            transform: scale(1.05);
+        }
+        
+        .social-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #000;
+            margin-top: 40px;
+            border-top: 1px solid #00ff88;
+        }
+        
+        .copyright {
+            color: #777;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-btn {
+                width: 80%;
+                justify-content: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">DIK STORE 💳</div>
+            <div class="tagline">Payment Gateway Resmi</div>
+        </div>
+    </header>
+
+    <!-- Payment Methods -->
+    <div class="container">
+        <section class="payment-section">
+            <h2 class="section-title">Metode Pembayaran</h2>
+            <div class="payment-methods">
+                <!-- DANA -->
+                <div class="payment-card">
+                    <h3 class="payment-title"><i class="fab fa-cc-diners-club"></i> DANA</h3>
+                    <div class="payment-detail">
+                        <strong>Nomor:</strong> 081946492969
+                    </div>
+                    <div class="payment-detail">
+                        <strong>Atas Nama:</strong> K
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('081946492969')">
+                        Salin Nomor
+                    </button>
+                </div>
+                
+                <!-- GOPAY -->
+                <div class="payment-card">
+                    <h3 class="payment-title"><i class="fab fa-google-pay"></i> GOPAY</h3>
+                    <div class="payment-detail">
+                        <strong>Nomor:</strong> 085923596743
+                    </div>
+                    <div class="payment-detail">
+                        <strong>Atas Nama:</strong> A
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('085923596743')">
+                        Salin Nomor
+                    </button>
+                </div>
+                
+                <!-- OVO -->
+                <div class="payment-card">
+                    <h3 class="payment-title"><i class="fas fa-wallet"></i> OVO</h3>
+                    <div class="payment-detail">
+                        <strong>Nomor:</strong> 085923596743
+                    </div>
+                    <div class="payment-detail">
+                        <strong>Atas Nama:</strong> W
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('085923596743')">
+                        Salin Nomor
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- QRIS -->
+        <section class="payment-section">
+            <h2 class="section-title">QRIS</h2>
+            <div class="qris-container">
+                <img src="https://files.catbox.moe/lb6v0e.png" alt="QRIS DIK STORE" class="qris-image">
+                <p class="qris-desc">Scan QR code di atas untuk pembayaran via QRIS</p>
+            </div>
+        </section>
+        
+        <!-- Social Links -->
+        <section class="social-section">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div class="social-links">
+                <a href="https://youtube.com/@dik_marker?si=rfvhpqS-Jz3clwjN" class="social-btn" target="_blank">
+                    <i class="fab fa-youtube"></i> YouTube
+                </a>
+                <a href="https://whatsapp.com/channel/0029VbB77Bx5Ui2St7z9Zj0i" class="social-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Channel
+                </a>
+                <a href="https://wa.me/6285923596743" class="social-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Hubungi DIK MARKER
+                </a>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="copyright">© 2025 DIK STORE 💳 - All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Fungsi untuk copy ke clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Nomor berhasil disalin: " + text);
+            }).catch(err => {
+                console.error('Gagal menyalin: ', err);
+            });
+        }
+        
+        // Animasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.payment-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+    </script>
+</body>
+</html>
